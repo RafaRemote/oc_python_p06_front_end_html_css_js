@@ -23,6 +23,8 @@ API: OCMovies-API, Django Rest Framework
 ### Installation de l'API  
 
 rendez-vous à l'adresse suivante et procédez à l'installation comme il est indiqué dans le readme:  
+
+[https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR.git]
   
 ### Site web
 
