@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   })
 
 let url_base = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score"
-let categories = [  '7 meilleurs films toutes catégories confondues',
-                    'western',
-                    'family',
-                    'adventure'
+let categories = [  '7 films les mieux notés',
+                    'romance',
+                    'biography',
+                    'western'
                 ]
 let list_urls = [[url_base]]
 
@@ -50,23 +50,41 @@ function getData(url, cat) {
 
 function manage(results, dataNext, cat) {
     if (cat == undefined) {
-        getBest(results)
+        getBest(results[0])
+        res = results.slice(1)
+        fetch(dataNext)
+            .then(response => response.json())
+            .then(data => data.results.slice(0,3).forEach(movie => res.push(movie)))
+            .then(dispatch(res, cat))
+    } else {
+        fetch(dataNext)
+            .then(response => response.json())
+            .then(data => data.results.slice(0, 2).forEach(movie => results.push(movie)))
+            .then(dispatch(results, cat))
     }
-    fetch(dataNext)
-        .then(response => response.json())
-        .then(data => data.results.slice(0, 2).forEach(movie => results.push(movie)))
-        .then(dispatch(results, cat))
 }
 
 function getBest(data) {
-    best_movie = data[0]
-    best_movie_title = best_movie.title
-    best_movie_image = best_movie.image_url
+    fetch(data.url)
+        .then(response => response.json())
+        .then(data => dispatch_best(data))
+}
+
+function dispatch_best(data) {
     let title = document.getElementById("best_movie_all_cat_title")
     let img = document.getElementById("img_best")
-    img.src = best_movie_image
-    title.textContent = best_movie_title
+    let container = document.getElementsByClassName('container__bestMovie__title')[0]
+    let short_description = document.createElement('p')
+    img.id = data.id
+    img.src = data.image_url
+    img.classList.add('a_bit_bigger')
+    title.textContent = data.title
+    short_description.innerText = 'Résumé: ' + data.description
+    short_description.style.fontStyle = 'italic'
+    container.appendChild(short_description)
+    listen_click(img.id)
 }
+
 
 function dispatch(results, cat) {
     if (cat == undefined) {
@@ -81,24 +99,25 @@ function dispatch(results, cat) {
             let image = document.createElement('img')
             image.id = results[i].id
             image.src = results[i].image_url
-            present_div.insertBefore(image, present_div.childNodes[1])
+            present_div.insertBefore(image, present_div.childNodes[present_div.childNodes.length -1])
+            listen_click(image.id)
         }
     } else {
-
         let div = document.getElementById('div_container_movies_' + cat.toLowerCase())
         arrow_left = document.createElement('button')
         arrow_left.id = "arrow_left_" + cat
-        arrow_left.innerHTML = '<i class="fas fa-arrow-left"></i>'
+        arrow_left.innerHTML = '<i class="fas fa-arrow-right"></i>'
         div.appendChild(arrow_left)
         for (let i in results.slice(0, 4)) {
             let image = document.createElement('img')
             image.id = results[i].id
             image.src = results[i].image_url
             div.appendChild(image)
+            listen_click(image.id)
         }
         arrow_right = document.createElement('button')
         arrow_right.id = "arrow_right_" + cat
-        arrow_right.innerHTML = '<i class="fas fa-arrow-right"></i>'
+        arrow_right.innerHTML = '<i class="fas fa-arrow-left"></i>'
         div.appendChild(arrow_right)
         listen_arrows(results, cat)
     }
@@ -117,4 +136,55 @@ function listen_arrows(movies, cat) {
         movies.push(element_to_move[0])
         return dispatch(movies, cat)
     })
+}
+
+function listen_click(id) {
+    let image_click = document.getElementById(id)
+    image_click.onclick = () => {
+        url = url_base.slice(0,36) + id
+        fetch(url)
+            .then(response => response.json())
+            .then(data => show(data))
+        }
+}
+
+function show(movie) {
+    let modal_content = document.getElementById('modal_content')
+    modal_content.innerHTML = ''
+    span = document.createElement('span')
+    span.classList.add('close')
+    span.innerHTML = '&times;'
+    span.style.alignSelf = 'flex-end'
+    modal_content.appendChild(span)
+    image = document.createElement('img')
+    image.src = movie.image_url;
+    image.classList.add('bigger_image')
+    modal_content.appendChild(image)
+    paragraph = document.createElement('p')
+    paragraph.style.textAlign = 'left'
+    if (movie.usa_gross_income == null) {
+        movie.usa_gross_income = 'inconnu'
+    }
+    paragraph.innerHTML = 'Titre du film : ' + movie.title + '<br><br>' +
+                          'Genres: ' + movie.genres + '<br><br>' +
+                          'Date de sortie: ' + movie.date_published + '<br><br>' +
+                          'Rated: ' + movie.rated + '<br><br>' +
+                          'Score IMDB: ' + movie.imdb_score + '<br><br>' +
+                          'Réalisateur: ' + movie.directors + '<br><br>' +
+                          'Liste des acteurs: ' + movie.actors + '<br><br>' +
+                          'Durée: ' + movie.duration + ' minutes' + '<br><br>' +
+                          'Pays d\'origine: ' + movie.countries + '<br><br>' +
+                          'Résultat au Box-Office en USD: ' + movie.usa_gross_income +'<br><br>' +
+                          'Résumé du film: ' + movie.long_description + '<br><br>'
+    modal_content.appendChild(paragraph)
+    let modal = document.getElementById('modal')
+    modal.style.display = 'flex'
+    listen_close(modal)
+}
+
+function listen_close(modal) {
+    let close = document.getElementsByTagName('span')[0]
+    close.onclick = () => {
+        modal.style.display = 'none'
+    }
 }
