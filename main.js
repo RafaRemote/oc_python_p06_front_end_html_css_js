@@ -126,12 +126,16 @@ function dispatch(results, cat) {
 function listen_arrows(movies, cat) {
     let btn_left = document.getElementById('arrow_left_' + cat);
     btn_left.addEventListener('click', () => {
+        setTimeout( () => {btn_left.classList.add('background_red')}, 50)
+        btn_left.classList.remove('background_red')
         let element_to_move = movies.splice(-1)
         movies.splice(0, 0, element_to_move[0])
         return dispatch(movies, cat)
     })
     let btn_right = document.getElementById('arrow_right_' + cat);
     btn_right.addEventListener('click', () => {
+        setTimeout( () => {btn_right.classList.add('background_red')}, 50)
+        btn_right.classList.remove('background_red')
         let element_to_move = movies.splice(0, 1)
         movies.push(element_to_move[0])
         return dispatch(movies, cat)
@@ -159,6 +163,7 @@ function show(movie) {
     image = document.createElement('img')
     image.src = movie.image_url;
     image.classList.add('bigger_image')
+    image.style.alignSelf = 'center'
     modal_content.appendChild(image)
     paragraph = document.createElement('p')
     paragraph.style.textAlign = 'left'

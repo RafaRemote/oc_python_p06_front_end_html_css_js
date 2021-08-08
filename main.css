@@ -39,7 +39,6 @@ img {
     width: 63px;
     height: 90px;
     margin: 1px;
-    border: 3px solid black;
 }
 
 .a_bit_bigger {
@@ -54,12 +53,25 @@ img {
 
 button {
     width: 12px;
+    padding: .75em;
     height: 84px;
     margin: 1px;
     border: 3px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: lightgray;
+}
+
+.background_red {
+    animation: reddish .5s;
+}
+
+@keyframes reddish {
+    0% {background-color:red;
+        color:white;}
+    100% {background-color: lightgray;
+        color:black;}
 }
 
 .header__title {
@@ -130,7 +142,7 @@ button {
     align-items: flex-start;
     justify-content: space-evenly;
     width: 95vw;
-    height: 150px;
+    height: 195px;
     overflow: hidden;
 }
 
@@ -154,15 +166,6 @@ button {
     width: 100%;
 }
 
-.container__arrow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height : 100%;
-    width: 5px;
-    padding: 1em;
-
-}
 
 #modal {
     display: none;
@@ -209,7 +212,6 @@ button {
         width: 100px;
         height: 130px;
         margin: 1px;
-        border: 3px solid black;
     }
 
     .container_for_seven {
@@ -217,4 +219,34 @@ button {
 
     }
 
+    h1 {
+        font-size: 3em;
+    }
+
+    h2 {
+        font-size: 2.5em;
+    }
+
+    
+    .a_bit_bigger {
+        width: 100px;
+        height: 150px;
+    }
+        
+    .bigger_image {
+        width: 275px;
+        height: 400px;
+    }
+
+    #modal_content {
+        margin: 2.5% auto;
+        width: 95%;
+        height: 95%;
+        font-size: 3em;
+    }
+
+
+    button {
+        padding: 1em;
+    }
   }
