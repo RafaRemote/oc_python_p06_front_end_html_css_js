@@ -8,8 +8,18 @@ Menu
 
 ## 1 - Présentation  
 
-Projet de site web permettant de visualiser les films intéressants à partir d'une base de données composée de plus de 80.000 films issue de l'IMDb (Internet Movie Database / IMDb.com).
-
+Projet de site web permettant de visualiser les films intéressants à partir d'une base de données composée de plus de 80.000 films issue de l'IMDb (Internet Movie Database / IMDb.com).  
+  
+Le site web affiche en haut de la page le meilleur film, le mieux noté de la base de données.  
+  
+Puis 4 carousels, possédant chacun un titre, se succécent horizontalement, ils comprennent chacun 7 films, mais ils n'en montrent frontalement que 4. Il faut faire défiler les films grâce aux boutons situés sur les côtés de chaque carousel.  
+  
+Le premier carousel présente les 7 meilleurs films de la base de données, succédant au meilleur film montré en haut de la page.  
+  
+Les 3 carousels suivant présentent les meilleurs films de catégories choisies au hasard.  
+  
+Enfin, lorsque vous cliquez sur n'importe laquelle des affiches de film présentes à l'écran, une fenêtre modale s'ouvre et présente en détail le film choisi.  
+  
 ## 2 - Technologies  
 
 Markup language: HTML  
