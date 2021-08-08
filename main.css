@@ -31,7 +31,6 @@ p {
     text-align: center
 }
 
-
 h3 {
     font-size: 1.75em;
 }
@@ -202,4 +201,20 @@ button {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+
+  @media only screen and (min-width:667px) {
+    img {
+        width: 100px;
+        height: 130px;
+        margin: 1px;
+        border: 3px solid black;
+    }
+
+    .container_for_seven {
+        margin: 2vh;
+
+    }
+
   }
