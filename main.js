@@ -1,21 +1,21 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    build()
-    launch()
-  })
+document.addEventListener("DOMContentLoaded", (event) => {
+    build();
+    launch();
+  });
 
-let url_base = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score"
-let categories = [  '7 films les mieux notés',
-                    'romance',
-                    'biography',
-                    'western'
-                ]
-let list_urls = [[url_base]]
+let url_base = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
+let categories = [  "7 films les mieux notés",
+                    "romance",
+                    "biography",
+                    "western"
+                ];
+let list_urls = [[url_base]];
 
 
 function build() {
-    let wrapper = document.getElementById('containers_wrapper')
-    categories.sort().reverse()
-    for (let i in categories) {
+    let wrapper = document.getElementById("containers_wrapper");
+    categories.sort().reverse();
+    for (i in categories) {
         div = document.createElement('div')
         div.classList.add('container_for_seven')
         div_title = document.createElement('div')
@@ -30,14 +30,14 @@ function build() {
         div.appendChild(div_movies)
         div.id = 'div_'+ categories[i]
         wrapper.appendChild(div)
-    }
+    };
 }
 
 function launch() {
-    for (let i in categories.slice(1)) {
+    for (i in categories.slice(1)) {
         list_urls.push([url_base.slice(0, 36)+'?genre='+categories[i]+'&'+url_base.slice(-19), categories[i]])
     }
-    for (let i in list_urls) {
+    for (i in list_urls) {
         getData(list_urls[i][0], list_urls[i][1])
     }
 }
