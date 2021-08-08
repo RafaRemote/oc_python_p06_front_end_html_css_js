@@ -249,4 +249,11 @@ button {
     button {
         padding: 1em;
     }
+
+
+    .container__bestMovie {
+
+        font-size: 1.75em;
+      
+    }
   }
