@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function start() {
 
 let url_base = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
 let categories = [  "7 films les mieux notés",
-                    "romance",
-                    "biography",
-                    "western"
+                    "film-noir",
+                    "crime",
+                    "biography"
                 ];
 let list_urls = [[url_base]];
 function build() {

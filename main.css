@@ -61,6 +61,7 @@ button {
     justify-content: center;
     align-items: center;
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .background_red {
@@ -212,6 +213,7 @@ button {
         width: 100px;
         height: 130px;
         margin: 1px;
+        cursor: pointer;
     }
 
     .container_for_seven {
