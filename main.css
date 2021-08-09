@@ -39,7 +39,6 @@ img {
     width: 63px;
     height: 91px;
     margin: .5px;
-    image-rendering: pixelated;
 }
 
 .a_bit_bigger {
@@ -228,7 +227,6 @@ button {
         font-size: 2.5em;
     }
 
-    
     .a_bit_bigger {
         width: 100px;
         height: 150px;
@@ -246,15 +244,11 @@ button {
         font-size: 3em;
     }
 
-
     button {
         padding: 1em;
     }
 
-
     .container__bestMovie {
-
         font-size: 1.75em;
-      
     }
   }
