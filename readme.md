@@ -12,7 +12,7 @@ Projet de site web permettant de visualiser les films intéressants à partir d'
   
 Le site web affiche en haut de la page le meilleur film, le mieux noté de la base de données.  
   
-Puis 4 carousels, possédant chacun un titre, se succédent horizontalement, ils comprennent chacun 7 films, mais ils n'en montrent frontalement que 4. Il faut faire défiler les films grâce aux boutons situés sur les côtés de chaque carousel.  
+Puis 4 carousels, possédant chacun un titre, se succèdent horizontalement, ils comprennent chacun 7 films, mais ils n'en montrent frontalement que 4. Il faut faire défiler les films grâce aux boutons situés sur les côtés de chaque carousel.  
   
 Le premier carousel présente les 7 meilleurs films de la base de données, succédant au meilleur film montré en haut de la page.  
   
