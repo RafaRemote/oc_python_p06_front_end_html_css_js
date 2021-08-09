@@ -161,6 +161,7 @@ function listen_click(id) {
             .then((data) => show(data));
         }
 }
+
 function show(movie) {
     let modal_content = document.getElementById("modal_content");
     modal_content.innerHTML = "";
