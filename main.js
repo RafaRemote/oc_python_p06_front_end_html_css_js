@@ -85,6 +85,7 @@ function dispatch_best(data) {
     let short_description = document.createElement("p");
     img.id = data.id;
     img.src = data.image_url;
+    img.alt = data.title;
     img.classList.add("a_bit_bigger");
     title.textContent = data.title;
     short_description.innerText = "Résumé: " + data.description;
@@ -107,6 +108,7 @@ function dispatch(results, cat) {
             let picture = document.createElement("img");
             picture.id = results[i].id;
             picture.src = results[i].image_url;
+            picture.alt = results[i].title;
             present_div.insertBefore(picture,
                 present_div.childNodes[present_div.childNodes.length -1]);
             listen_click(picture.id);
@@ -116,17 +118,20 @@ function dispatch(results, cat) {
                   cat.toLowerCase());
         let arrow_left = document.createElement("button");
         arrow_left.id = "arrow_left_" + cat;
+        arrow_left.name = "arrow_left_" + cat;
         arrow_left.innerHTML = "<i class='fas fa-arrow-left'></i>";
         div.appendChild(arrow_left);
         for (i in results.slice(0, 4)) {
             let picture = document.createElement("img");
             picture.id = results[i].id;
             picture.src = results[i].image_url;
+            picture.alt = results[i].title;
             div.appendChild(picture);
             listen_click(picture.id);
         }
         let arrow_right = document.createElement("button");
         arrow_right.id = "arrow_right_" + cat;
+        arrow_right.name = "arrow_right_" + cat;
         arrow_right.innerHTML = "<i class='fas fa-arrow-right'></i>";
         div.appendChild(arrow_right);
         listen_arrows(results, cat);
