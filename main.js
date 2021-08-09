@@ -118,7 +118,7 @@ function dispatch(results, cat) {
                   cat.toLowerCase());
         let arrow_left = document.createElement("button");
         arrow_left.id = "arrow_left_" + cat;
-        arrow_left.aria-label = "arrow_left_" + cat;
+        arrow_left.ariaLabel = "arrow_left_" + cat;
         arrow_left.innerHTML = "<i class='fas fa-arrow-left'></i>";
         div.appendChild(arrow_left);
         for (i in results.slice(0, 4)) {
@@ -131,7 +131,7 @@ function dispatch(results, cat) {
         }
         let arrow_right = document.createElement("button");
         arrow_right.id = "arrow_right_" + cat;
-        arrow_right.arial-label = "arrow_right_" + cat;
+        arrow_right.ariaLabel = "arrow_right_" + cat;
         arrow_right.innerHTML = "<i class='fas fa-arrow-right'></i>";
         div.appendChild(arrow_right);
         listen_arrows(results, cat);
