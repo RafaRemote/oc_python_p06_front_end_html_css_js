@@ -38,7 +38,8 @@ h3 {
 img {
     width: 63px;
     height: 91px;
-    margin: 1px;
+    margin: .5px;
+    image-rendering: pixelated;
 }
 
 .a_bit_bigger {
@@ -52,10 +53,10 @@ img {
 }
 
 button {
-    width: 12px;
+    width: 10px;
     padding: .75em;
     height: 84px;
-    margin: 1px;
+    margin: .5px;
     border: 3px solid black;
     display: flex;
     justify-content: center;
