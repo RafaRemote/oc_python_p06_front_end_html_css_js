@@ -38,9 +38,15 @@ rendez-vous à l'adresse suivante et procédez à l'installation comme il est in
   
 ### Site web
 
-2 solutions s'offrent à vous, dans tous les cas vérifiez bien que vous avez bien installé l'API et lancé le serveur.
+Le fonctionnement du site a été, comme demandé, vérifié sur les 3 navigateurs les plus utilisés:  
 
-#### Solution 1
+- Chrome,
+- Safari,
+- Firefox
+
+2 solutions s'offrent à vous, dans tous les cas vérifiez bien que vous avez bien installé l'API et lancé le serveur:
+
+#### Solution 1 (Chrome, Safari, Firefox)
 
 clonez ce repository où vous le souhaitez:
 
@@ -50,7 +56,7 @@ git clone https://github.com/RafaRemote/just_stream_it.git
   
 Ensuite, avec le naviguateur de votre choix, ouvrir le fichier 'index.html' qui se trouve dans le dossier que vous venez de créer en clonant ce repository.
 
-#### Solution 2
+#### Solution 2 (Chrome et Firefox)
 
 Rendez-vous simplement à cette adresse:  
   
