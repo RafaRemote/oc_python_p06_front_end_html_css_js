@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function start() {
     }
 );
 
+/* declaring variables */
 let url_base = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
 let categories = [  "7 films les mieux notés",
                     "film-noir",
@@ -12,6 +13,10 @@ let categories = [  "7 films les mieux notés",
                     "biography"
                 ];
 let list_urls = [[url_base]];
+
+/* 
+creates HTML structure for the chosen categories (in the list 'categories')
+*/
 function build() {
     let wrapper = document.getElementById("containers_wrapper");
     categories.sort().reverse();
@@ -34,6 +39,10 @@ function build() {
     }
 }
 
+/* 
+creates the list of urls that will be requested
+calls the function that will sends requests.
+*/
 function launch() {
     for (let i in categories.slice(1)) {
         list_urls.push([url_base.slice(0, 36)+"?genre=" +
@@ -46,12 +55,23 @@ function launch() {
     }
 }
 
+/*
+sends GET request using the Fetch API
+infos: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+calls function manage()
+*/
 function getData(url, cat) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => manage(data.results, data.next, cat));
 }
 
+/*
+fetches resources from the url assigned to data.next in the json to fetch the
+next page of a categorie and calls function dispatch()
+if the categorie is undefinied '(cat == undefined)' then
+first it calls function getBest() 
+*/
 function manage(results, dataNext, cat) {
     if (cat == undefined) {
         getBest(results[0]);
@@ -70,12 +90,19 @@ function manage(results, dataNext, cat) {
     }
 }
 
+/*
+simply sends request to get the best movie of the database
+then calls another function with the result (JSON formnat)
+*/
 function getBest(data) {
     fetch(data.url)
         .then((response) => response.json())
         .then((data) => dispatch_best(data));
 }
 
+/*
+this function is designed to show the best movie of the database analyzed
+*/
 function dispatch_best(data) {
     let title = document.getElementById("best_movie_all_cat_title");
     let img = document.getElementById("img_best");
@@ -94,6 +121,10 @@ function dispatch_best(data) {
     listen_click(img.id);
 }
 
+/*
+shows the informations for each set of 7 movies
+depending on the categorie
+*/
 function dispatch(results, cat) {
     if (cat == undefined) {
         cat = categories.sort()[0];
@@ -138,6 +169,11 @@ function dispatch(results, cat) {
     }
 }
 
+/*
+listens click events on the arrows.
+depending on the click it does manipulate a list
+and sends this list to function dispatch()
+*/
 function listen_arrows(movies, cat) {
     let btn_left = document.getElementById("arrow_left_" + cat);
     btn_left.addEventListener("click", () => {
@@ -157,6 +193,11 @@ function listen_arrows(movies, cat) {
     })
 }
 
+/*
+listen to the click on the images which have an id
+on click: does elaborate an url, and does fetch resources from
+this url, then calls another function (show())
+*/
 function listen_click(id) {
     let image_click = document.getElementById(id);
     image_click.onclick = () => {
@@ -167,6 +208,10 @@ function listen_click(id) {
         }
 }
 
+
+/*
+does create a content for the HTML element 'modal_content'
+*/
 function show(movie) {
     let modal_content = document.getElementById("modal_content");
     modal_content.innerHTML = "";
@@ -214,6 +259,11 @@ function show(movie) {
     listen_close(modal);
 }
 
+/*
+listen to click event on HTML element
+onclick: makes HTML element dispaear
+when assigning 'none' to its style.display attribute
+*/
 function listen_close(modal) {
     let close = document.getElementsByTagName("span")[0]
     close.onclick = () => {
