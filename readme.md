@@ -1,4 +1,4 @@
-# Project: JustStreamIt  
+# Project: JustStreamIt  🇫🇷
 
 Menu  
 
